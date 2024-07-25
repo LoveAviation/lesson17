@@ -13,19 +13,27 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
     private var _photos = MutableLiveData<PhotosResponse>()
     val photos: LiveData<PhotosResponse> get() = _photos
-    val useCase = UseCase()
+
+//    private var _state = MutableLiveData<String>()
+//    val state: LiveData<String> get() = _state
+
+    private val useCase = UseCase()
 
     init {
         getPhotos()
     }
 
-    fun getPhotos(){
+    private fun getPhotos(){
         viewModelScope.launch {
+            //_state.value = "loading"
+            Log.d(TAG, "loading")
             try {
                 _photos.value = useCase.executeAPI()
-                Log.d(TAG, "${photos.value}")
+                //_state.value = "success"
+                Log.d(TAG, "success")
             }catch (e: Exception) {
                 Log.e(TAG,"Something went wrong")
+                //_state.value = "error"
             }
         }
     }
