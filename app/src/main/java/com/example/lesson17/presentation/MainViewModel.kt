@@ -14,8 +14,8 @@ class MainViewModel : ViewModel() {
     private var _photos = MutableLiveData<PhotosResponse>()
     val photos: LiveData<PhotosResponse> get() = _photos
 
-//    private var _state = MutableLiveData<String>()
-//    val state: LiveData<String> get() = _state
+    private var _state = MutableLiveData<String>()
+    val state: LiveData<String> get() = _state
 
     private val useCase = UseCase()
 
@@ -23,17 +23,17 @@ class MainViewModel : ViewModel() {
         getPhotos()
     }
 
-    private fun getPhotos(){
+    fun getPhotos(){
         viewModelScope.launch {
-            //_state.value = "loading"
+            _state.value = "loading"
             Log.d(TAG, "loading")
             try {
                 _photos.value = useCase.executeAPI()
-                //_state.value = "success"
+                _state.value = "success"
                 Log.d(TAG, "success")
             }catch (e: Exception) {
                 Log.e(TAG,"Something went wrong")
-                //_state.value = "error"
+                _state.value = "error"
             }
         }
     }

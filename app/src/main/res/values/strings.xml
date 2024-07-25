@@ -5,5 +5,5 @@
     <string name="camera">Camera:</string>
     <string name="sol">Sol:</string>
     <string name="earth_date">Earth date:</string>
-    <string name="something_went_wrong">Something went wrong</string>
+    <string name="something_went_wrong">Something went wrong. Reloading in 3 sec…</string>
 </resources>
